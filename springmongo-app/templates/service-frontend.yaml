@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: {{ .Values.frontend.service.name }}
 spec:
-  protocol: HTTP
   ports:
     - port: {{ .Values.frontend.service.port }}
   selector:

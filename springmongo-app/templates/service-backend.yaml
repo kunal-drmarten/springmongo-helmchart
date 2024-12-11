@@ -3,7 +3,6 @@ kind: Service
 metadata:
   name: {{ .Values.backend.service.name }}
 spec:
-  protocol: TCP
   ports:
     - port: {{ .Values.backend.service.port }}
   selector:
