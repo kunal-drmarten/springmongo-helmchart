@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: frontend-gateway
+  namespace: default
+spec:
+  selector:
+    app: istio-ingress # Match the labels on your Istio Ingress Gateway service
+    istio: ingress
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"

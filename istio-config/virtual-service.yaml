@@ -1,0 +1,32 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: frontend
+  namespace: default
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - frontend-gateway
+  http:
+    - match:
+        - uri:
+            prefix: "/api/" # Match paths that start with /api/
+      route:
+        - destination:
+            host: backend.default.svc.cluster.local
+            port:
+              number: 8081
+    - match:
+        - uri:
+            prefix: "/" # Match all other paths
+      route:
+        - destination:
+            host: frontend.default.svc.cluster.local
+            subset: v1
+          weight: 0
+        - destination:
+            host: frontend.default.svc.cluster.local
+            subset: v2
+          weight: 100
+

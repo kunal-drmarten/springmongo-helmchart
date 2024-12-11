@@ -1,0 +1,47 @@
+mongodb:
+  image:
+    repository: mongo
+    tag: latest
+  service:
+    name: mongodb
+    port: 27017
+  replicaCount: 1
+  persistence:
+    enabled: true
+    storageClass: "standard"
+    accessModes:
+      - ReadWriteOnce
+    size: 8Gi
+  secret:
+    username: "test"
+    password: "test"
+  config:
+    mongodburi: "mongodb://mongodb:27017/mydb"
+
+
+frontend:
+  image:
+    repository: 7987937230/springmongo-frontend
+    tag: 1
+  replicaCount: 1
+  service:
+    name: frontend
+    port: 80
+
+frontend2:
+  image:
+    repository: 7987937230/springmongo-frontend
+    tag: 2
+  replicaCount: 1
+  service:
+    name: frontend
+    port: 80
+
+backend:
+  image:
+    repository: 7987937230/springmongo-backend
+    tag: 2
+  replicaCount: 1
+  service:
+    name: backend
+    port: 8081
