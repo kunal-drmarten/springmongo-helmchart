@@ -22,7 +22,7 @@ mongodb:
 frontend:
   image:
     repository: 7987937230/springmongo-frontend
-    tag: 9f66fd4501c6a53193386b82727ecce6c2f1a691
+    tag: 
   replicaCount: 1
   service:
     name: frontend
